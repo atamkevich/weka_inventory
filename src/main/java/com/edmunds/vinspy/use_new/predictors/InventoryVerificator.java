@@ -31,7 +31,7 @@ public class InventoryVerificator {
 		 * 3,8,10 need to be of type string and columns 1,4,11 are nominal
 		 * types.
 		 */
-        predictCsvLoader.setNominalAttributes("1, 2, 3, 4, 5");
+        predictCsvLoader.setNominalAttributes("1, 2, 3, 4, 5, 6, 7");
         Instances predictDataSet = predictCsvLoader.getDataSet();
 
 		/*
@@ -49,7 +49,7 @@ public class InventoryVerificator {
 		 * Next we load the training data from our ARFF file
 		 */
         ArffLoader trainLoader = new ArffLoader();
-        trainLoader.setSource(new File("/home/alina/workspace/weka_inventory/src/main/resources/inventory_nominal.arff"));
+        trainLoader.setSource(new File("/home/alina/workspace/weka_inventory/src/main/resources/train_result.arff"));
         trainLoader.setRetrieval(Loader.BATCH);
         Instances trainDataSet = trainLoader.getDataSet();
 

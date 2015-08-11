@@ -5,7 +5,7 @@
 @attribute usedInTittle {0,1}
 @attribute newInUrl {0,1}
 @attribute usedInUrl {0,1}
-@attribute year {0,2011,2013,2015}
+@attribute year Numeric
 
 @data
 NEW,0,1,0,0,2015

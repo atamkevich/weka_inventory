@@ -32,7 +32,7 @@ import com.edmunds.vinspy.use_new.repository.InventoryRepository;
  */
 public class ClassificationManager {
 
-    public static final String INVENTORY_TRAIN_DATA = "/inventory_nominal.arff";
+    public static final String INVENTORY_TRAIN_DATA = "/train_result.arff";
     public static final String INVENTORY_CLASSIFIER = "src/main/resources/inventory.classifier";
     /**
      * Type of classifiers in Sentinel.
@@ -138,7 +138,7 @@ public class ClassificationManager {
             List<Inventory> all = null;
             boolean processingFlag = true;
             while (processingFlag) {
-                all = inventoryRepository.findAll(new Query().limit(5000));
+                all = inventoryRepository.findAll(new Query().limit(5));
                 for (Inventory inventory: all) {
                     inventory.setInventoryTypeWeka(usedNewInspector.predictInventoryType(inventory));
                     inventoryRepository.addOrUpdate(inventory, "inventory3");

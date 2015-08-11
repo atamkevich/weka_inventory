@@ -27,3 +27,10 @@ db.inventory.find().forEach(function(item){
 function binary(x) {
     return x ? 1 : 0;
 }
+
+
+db.getCollection('inventory3').find({}).forEach(function(item){
+    if (item.inventoryType != item.inventoryTypeWeka) {
+        print(item)
+    }
+})

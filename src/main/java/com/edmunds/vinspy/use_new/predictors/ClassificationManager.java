@@ -6,6 +6,7 @@ import static weka.core.converters.ConverterUtils.DataSource;
 import com.edmunds.vinspy.use_new.model.Inventory;
 import com.google.common.io.Closeables;
 import com.edmunds.vinspy.use_new.config.ClassificationConfig;
+import org.apache.commons.collections.CollectionUtils;
 import org.javatuples.Pair;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
@@ -137,11 +138,17 @@ public class ClassificationManager {
             UsedNewInspector usedNewInspector = applicationContext.getBean(UsedNewInspector.class);
             List<Inventory> all = null;
             boolean processingFlag = true;
+            int page = 0;
+            int size = 50;
             while (processingFlag) {
-                all = inventoryRepository.findAll(new Query(Criteria.where("inventoryType").is("NEW")).limit(5));
+                all = inventoryRepository.findAll(new Query().limit(size).skip(page * size));
                 for (Inventory inventory: all) {
                     inventory.setInventoryTypeWeka(usedNewInspector.predictInventoryType(inventory));
                     inventoryRepository.addOrUpdate(inventory, "inventory3");
+                }
+                page ++;
+                if ((all == null) || all.isEmpty()) {
+                    processingFlag = false;
                 }
             }
             System.out.println("end");

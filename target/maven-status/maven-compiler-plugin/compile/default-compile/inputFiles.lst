@@ -1,0 +1,17 @@
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/predictors/UsedNewInspector.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/utils/QueryHelper.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/model/InventoryType.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/model/Location.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/model/Sequence.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/predictors/ClassificationManager.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/model/Inventory.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/config/ClassificationConfig.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/config/MongoConfig.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/model/History.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/model/ExtractedAttr.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/repository/InventoryRepository.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/model/Status.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/utils/NotFoundException.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/model/BaseEntity.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/predictors/InventoryVerificator.java
+/home/alina/workspace/weka_inventory/src/main/java/com/edmunds/vinspy/use_new/repository/BaseRepository.java

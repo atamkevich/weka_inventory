@@ -15,7 +15,7 @@ import weka.core.Instances;
 public class UsedNewInspector {
     public static final String NEW = "new";
     public static final String USED = "used";
-    public static final Integer MILLAGE_BORDER = 5000;
+    public static final Double MILLAGE_BORDER = 5000d;
 
     private final FilteredClassifier classifier;
     private final Instances modelDefinition;
@@ -57,7 +57,7 @@ public class UsedNewInspector {
    }
 
     private int convertMillageToNominal(String millage) {
-        return (millage == null) ? 0 : ((Integer.parseInt(millage) < MILLAGE_BORDER) ? 1 : 0);
+        return (millage == null) ? 0 : ((Double.valueOf(millage.replace(",", ".")) < MILLAGE_BORDER) ? 1 : 0);
     }
     public String predictInventoryType(final Inventory inventory) throws Exception {
         Instance reviewInstance = buildInventoryInstance(modelDefinition, inventory);

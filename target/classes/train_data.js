@@ -18,9 +18,9 @@ db.inventory.find().forEach(function(item){
         var millage = (item.attributes.MILEAGE == null) ? 1 : ((item.attributes.MILEAGE) > 5000 ? 0 : 1)
 
         var type = (item.inventoryType.toUpperCase() == "NEW") ? "NEW" : "USED"
-        print(type + "," +binary(usedInTitle) + "," +
-            binary(newInTitle) + "," + binary(usedInUrl) + ","
-            + binary(newInUrl) + "," + year + "," + msrp + "," + millage)
+        print(type + "," +binary(newInTitle) + "," +
+            binary(usedInTitle) + "," + binary(newInUrl) + ","
+            + binary(usedInUrl) + "," + year + "," + msrp + "," + millage)
     }
 })
 

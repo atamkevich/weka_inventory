@@ -138,7 +138,7 @@ public class ClassificationManager {
             List<Inventory> all = null;
             boolean processingFlag = true;
             while (processingFlag) {
-                all = inventoryRepository.findAll(new Query().limit(5));
+                all = inventoryRepository.findAll(new Query(Criteria.where("inventoryType").is("NEW")).limit(5));
                 for (Inventory inventory: all) {
                     inventory.setInventoryTypeWeka(usedNewInspector.predictInventoryType(inventory));
                     inventoryRepository.addOrUpdate(inventory, "inventory3");

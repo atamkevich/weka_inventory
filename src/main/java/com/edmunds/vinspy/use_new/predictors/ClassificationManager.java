@@ -29,7 +29,7 @@ import com.edmunds.vinspy.use_new.repository.InventoryRepository;
 /**
  * Classifier manager. Contains logic to store/load/init weka classifier,
  *
- * @author zenind
+ * @author alina
  */
 public class ClassificationManager {
 

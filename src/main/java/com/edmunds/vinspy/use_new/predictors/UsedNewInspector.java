@@ -15,7 +15,7 @@ import weka.core.Instances;
 public class UsedNewInspector {
     public static final String NEW = "new";
     public static final String USED = "used";
-    public static final Double MILLAGE_BORDER = 5000d;
+    public static final Integer MILLAGE_BORDER = 5000;
 
     private final FilteredClassifier classifier;
     private final Instances modelDefinition;
@@ -36,8 +36,8 @@ public class UsedNewInspector {
         instanceValues[0] = 0;
         instanceValues[1] = isPresent((String)inventory.getAttributes().get(ExtractedAttr.TITLE), NEW);
         instanceValues[2] = isPresent((String) inventory.getAttributes().get(ExtractedAttr.TITLE), USED);
-        instanceValues[3] = isPresent(inventory.getLocations().get(0).getUrl(), NEW);
-        instanceValues[4] = isPresent(inventory.getLocations().get(0).getUrl(), USED);
+        instanceValues[3] = inventory.getLocations().isEmpty() ? 0 : isPresent(inventory.getLocations().get(0).getUrl(), NEW);
+        instanceValues[4] = inventory.getLocations().isEmpty() ? 0 : isPresent(inventory.getLocations().get(0).getUrl(), USED);
         instanceValues[5] = convertYearToNominal(inventory);
         instanceValues[6] = (inventory.getAttributes().get(ExtractedAttr.MSRP) != null) ? 1 : 0;
         instanceValues[7] = convertMillageToNominal((String)inventory.getAttributes().get(ExtractedAttr.MILEAGE));
@@ -51,13 +51,13 @@ public class UsedNewInspector {
 
    private int convertYearToNominal(Inventory inventory) {
        Integer year = (Integer) inventory.getAttributes().get(ExtractedAttr.YEAR);
-       int newWeight = isPresent((String) inventory.getAttributes().get(ExtractedAttr.TITLE), NEW) + isPresent(inventory.getLocations().get(0).getUrl(), NEW);
-       int usedWeight = isPresent((String) inventory.getAttributes().get(ExtractedAttr.TITLE), USED) + isPresent(inventory.getLocations().get(0).getUrl(), USED);
+       int newWeight = isPresent((String) inventory.getAttributes().get(ExtractedAttr.TITLE), NEW) + (inventory.getLocations().isEmpty() ? 0 :isPresent(inventory.getLocations().get(0).getUrl(), NEW));
+       int usedWeight = isPresent((String) inventory.getAttributes().get(ExtractedAttr.TITLE), USED) + (inventory.getLocations().isEmpty() ? 0 : isPresent(inventory.getLocations().get(0).getUrl(), USED));
        return (year == null) ? ((newWeight > usedWeight) ? 1 : 0)  : ((year > (DateTime.now().getYear() - 4)) ? 1 : 0);
    }
 
     private int convertMillageToNominal(String millage) {
-        return (millage == null) ? 0 : ((Double.valueOf(millage.replace(",", ".")) < MILLAGE_BORDER) ? 1 : 0);
+        return (millage == null) ? 0 : ((Integer.valueOf(millage.replace(",", "")) < MILLAGE_BORDER) ? 1 : 0);
     }
     public String predictInventoryType(final Inventory inventory) throws Exception {
         Instance reviewInstance = buildInventoryInstance(modelDefinition, inventory);

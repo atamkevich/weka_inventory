@@ -15,7 +15,8 @@ db.inventory.find().forEach(function(item){
 
         var msrp = binary(item.attributes.MSRP != null)
 
-        var millage = (item.attributes.MILEAGE == null) ? 1 : ((item.attributes.MILEAGE) > 5000 ? 0 : 1)
+        var millage = (item.attributes.MILEAGE == null)
+            ? 1 : ((parseInt(item.attributes.MILEAGE.replace(",", "")) > 5000) ? 0 : 1)
 
         var type = (item.inventoryType.toUpperCase() == "NEW") ? "NEW" : "USED"
         print(type + "," +binary(newInTitle) + "," +
@@ -27,3 +28,10 @@ db.inventory.find().forEach(function(item){
 function binary(x) {
     return x ? 1 : 0;
 }
+
+
+db.getCollection('inventory3').find({}).forEach(function(item){
+    if (item.inventoryType != item.inventoryTypeWeka) {
+        print(item)
+    }
+})
